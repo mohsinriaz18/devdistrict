@@ -6,10 +6,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <p className="text-lg font-bold text-foreground tracking-tight">
-              Dev District
-            </p>
-            <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+            <div className="flex items-center gap-2 mb-3">
+              <img src="/logo.jpeg" alt="Dev District" className="h-8 w-8 object-contain rounded" />
+              <p className="text-lg font-bold text-foreground tracking-tight">
+                Dev District
+              </p>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Modern software development
               <br />
               for ambitious teams.

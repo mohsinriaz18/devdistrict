@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 
 const projects = [
-  { title: "Fintech Dashboard", category: "Web App", span: "md:col-span-2 md:row-span-2" },
-  { title: "Health AI Platform", category: "AI / ML", span: "md:col-span-1 md:row-span-1" },
-  { title: "E-Commerce Mobile", category: "Mobile App", span: "md:col-span-1 md:row-span-1" },
-  { title: "SaaS Analytics Tool", category: "Web App", span: "md:col-span-1 md:row-span-1" },
-  { title: "Logistics Platform", category: "Product Design", span: "md:col-span-2 md:row-span-1" },
-  { title: "EdTech MVP", category: "MVP", span: "md:col-span-1 md:row-span-1" },
+  { title: "BotAgent", category: "AI / Automation", image: "/portfolio/botagent.avif", span: "md:col-span-2 md:row-span-2" },
+  { title: "Copilot", category: "AI / Productivity", image: "/portfolio/copilot.avif", span: "md:col-span-1 md:row-span-1" },
+  { title: "Resumedia", category: "Web App", image: "/portfolio/resumedia.avif", span: "md:col-span-1 md:row-span-1" },
+  { title: "Xecuter", category: "SaaS Platform", image: "/portfolio/xecuter.avif", span: "md:col-span-2 md:row-span-1" },
 ];
 
 const Portfolio = () => {
@@ -40,22 +38,20 @@ const Portfolio = () => {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className={`relative group overflow-hidden bg-background/5 border border-background/10 ${project.span} min-h-[240px] md:min-h-[280px] cursor-pointer`}
             >
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-background/0 group-hover:bg-background/10 transition-all duration-500 flex items-end p-8">
-                <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-500" />
+
+              <div className="absolute inset-0 flex items-end p-8">
+                <div className="translate-y-2 group-hover:translate-y-0 transition-all duration-500">
                   <p className="text-xs uppercase tracking-[0.2em] text-background/60 mb-2">
                     {project.category}
                   </p>
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
+                  <h3 className="text-xl font-semibold text-background">{project.title}</h3>
                 </div>
-              </div>
-
-              {/* Always-visible label on mobile */}
-              <div className="md:hidden absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-background/60 mb-1">
-                  {project.category}
-                </p>
-                <h3 className="text-lg font-semibold">{project.title}</h3>
               </div>
             </motion.div>
           ))}
