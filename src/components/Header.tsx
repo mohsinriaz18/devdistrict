@@ -29,8 +29,11 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
-        <a href="#home" className="text-xl font-bold tracking-tight text-foreground">
-          Dev District
+        <a href="#home" className="flex items-center gap-2">
+          <img src="/logo.jpeg" alt="Dev District" className="h-8 w-8 object-contain rounded" />
+          <span className="text-xl font-bold tracking-tight text-foreground">
+            Dev District
+          </span>
         </a>
 
         {/* Desktop */}
