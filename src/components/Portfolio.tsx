@@ -16,15 +16,18 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto"
         >
-          <p className="text-sm uppercase tracking-[0.3em] text-background/50 mb-4">
+          <p className="text-xs uppercase tracking-[0.3em] text-background/50 mb-4">
             Selected Work
           </p>
           <h2
-            className="font-bold tracking-tight"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
+            className="font-bold tracking-tight text-balance"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
           >
-            Portfolio
+            Work That Speaks.
+            <br />
+            Results That Scale.
           </h2>
         </motion.div>
 

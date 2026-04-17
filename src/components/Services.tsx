@@ -47,30 +47,28 @@ const Services = () => {
   return (
     <section id="services" className="py-32 px-6 bg-secondary/30">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 max-w-3xl mx-auto"
+        >
+          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">
+            What We Do
+          </p>
+          <h2
+            className="text-foreground font-bold tracking-tight text-balance"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
           >
-            <h2
-              className="text-foreground font-bold tracking-tight"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
-            >
-              Services.
-            </h2>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-sm text-muted-foreground leading-relaxed max-w-sm md:text-right md:mt-4"
-          >
-            We help startups and enterprises bring their vision to life through expert software development, capturing every detail.
-          </motion.p>
-        </div>
+            Built to Ship.
+            <br />
+            Designed to Win.
+          </h2>
+          <p className="mt-6 text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl mx-auto">
+            We help startups and enterprises bring bold ideas to life through expert software, design, and strategy.
+          </p>
+        </motion.div>
 
         <div className="flex flex-col">
           {services.map((service, i) => {
