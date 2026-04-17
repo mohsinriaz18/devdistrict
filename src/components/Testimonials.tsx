@@ -1,29 +1,33 @@
 import { motion } from "framer-motion";
+import t1 from "@/assets/testimonial-1.jpg";
+import t2 from "@/assets/testimonial-2.jpg";
+import t3 from "@/assets/testimonial-3.jpg";
+import t4 from "@/assets/testimonial-4.jpg";
 
 const testimonials = [
   {
     quote: "Dev District transformed our vision into a product that exceeded every expectation. Their speed and quality are unmatched.",
     name: "Sarah Chen",
     role: "CEO, Aura Health",
-    initials: "SC",
+    image: t1,
   },
   {
     quote: "Working with them felt like having a world-class engineering team in-house. They shipped our MVP in 6 weeks flat.",
     name: "Marcus Williams",
     role: "Founder, NovaPay",
-    initials: "MW",
+    image: t2,
   },
   {
     quote: "The attention to detail in both design and code is exceptional. Our users constantly praise the experience.",
     name: "Elena Rodriguez",
     role: "CPO, Streamline",
-    initials: "ER",
+    image: t3,
   },
   {
     quote: "They don't just build software — they think like product strategists. Dev District is our go-to partner for every project.",
     name: "James Park",
     role: "CTO, Kinetic Labs",
-    initials: "JP",
+    image: t4,
   },
 ];
 
@@ -36,16 +40,16 @@ const Testimonials = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-16 text-center max-w-3xl mx-auto"
         >
-          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-4">
+          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">
             Testimonials
           </p>
           <h2
-            className="text-foreground font-bold tracking-tight"
+            className="text-foreground font-bold tracking-tight text-balance"
             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
           >
-            Trusted by founders and teams.
+            Trusted by Founders and Teams.
           </h2>
         </motion.div>
 
@@ -62,13 +66,18 @@ const Testimonials = () => {
               <p className="text-foreground/90 leading-relaxed text-lg md:text-xl font-light text-balance">
                 "{t.quote}"
               </p>
-              <div className="mt-8 flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-secondary border border-border flex items-center justify-center text-sm font-semibold text-foreground grayscale">
-                  {t.initials}
-                </div>
+              <div className="mt-8 flex items-center gap-5">
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  loading="lazy"
+                  width={80}
+                  height={80}
+                  className="h-20 w-20 rounded-full object-cover grayscale border border-border"
+                />
                 <div>
-                  <p className="font-semibold text-sm text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{t.role}</p>
+                  <p className="font-semibold text-base text-foreground">{t.name}</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{t.role}</p>
                 </div>
               </div>
             </motion.article>
