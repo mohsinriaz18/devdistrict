@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useStartProject } from "./StartProjectModal";
 
 const Hero = () => {
+  const { open } = useStartProject();
   return (
     <section
       id="home"
@@ -47,13 +49,13 @@ const Hero = () => {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a
-            href="#contact"
+          <button
+            onClick={open}
             className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Start a Project
             <ArrowRight size={16} />
-          </a>
+          </button>
           <a
             href="#portfolio"
             className="inline-flex items-center gap-2 border border-foreground text-foreground px-8 py-4 text-sm font-medium hover:bg-foreground hover:text-background transition-colors"

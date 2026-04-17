@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { useStartProject } from "./StartProjectModal";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -13,6 +14,7 @@ const navLinks = [
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { open } = useStartProject();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -47,6 +49,13 @@ const Header = () => {
               {link.label}
             </a>
           ))}
+          <button
+            onClick={open}
+            className="inline-flex items-center gap-2 bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            Start a Project
+            <ArrowRight size={14} />
+          </button>
         </nav>
 
         {/* Mobile toggle */}
@@ -72,6 +81,13 @@ const Header = () => {
               {link.label}
             </a>
           ))}
+          <button
+            onClick={() => { setMobileOpen(false); open(); }}
+            className="mt-2 inline-flex items-center justify-center gap-2 bg-foreground text-background px-5 py-3 text-sm font-medium"
+          >
+            Start a Project
+            <ArrowRight size={14} />
+          </button>
         </nav>
       )}
     </header>
