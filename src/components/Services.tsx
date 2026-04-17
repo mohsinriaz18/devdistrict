@@ -149,6 +149,35 @@ const Services = () => {
             );
           })}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-20 text-center"
+        >
+          <h3
+            className="text-foreground font-bold tracking-tight text-balance max-w-2xl mx-auto"
+            style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}
+          >
+            Ready to turn your idea into a shipped product?
+          </h3>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              Get a Quote
+            </a>
+            <a
+              href="#portfolio"
+              className="inline-flex items-center justify-center gap-2 border border-foreground text-foreground px-8 py-4 text-sm font-medium hover:bg-foreground hover:text-background transition-colors"
+            >
+              See Our Work
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
