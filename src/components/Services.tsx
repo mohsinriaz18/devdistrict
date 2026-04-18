@@ -45,14 +45,14 @@ const Services = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="services" className="py-32 px-6 bg-secondary/30">
+    <section id="services" className="py-20 md:py-24 px-6 bg-secondary/30">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-12 max-w-3xl mx-auto"
         >
           <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">
             What We Do
@@ -155,7 +155,7 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="mt-20 text-center"
+          className="mt-14 text-center"
         >
           <h3
             className="text-foreground font-bold tracking-tight text-balance max-w-2xl mx-auto"

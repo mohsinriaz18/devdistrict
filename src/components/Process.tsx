@@ -59,14 +59,14 @@ const Process = () => {
                   className="relative flex flex-col items-center"
                 >
                   {above && (
-                    <div className="mb-8 text-center px-2 min-h-[140px] flex flex-col justify-end">
+                    <div className="mb-8 w-full px-2 min-h-[160px] flex flex-col justify-end items-center text-center">
                       <p className="text-[10px] font-mono text-muted-foreground tracking-widest mb-2">
                         {s.n}
                       </p>
                       <h3 className="text-lg font-semibold text-foreground mb-2">
                         {s.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
+                      <p className="text-xs text-muted-foreground leading-relaxed max-w-[180px] mx-auto">
                         {s.desc}
                       </p>
                     </div>
@@ -78,14 +78,14 @@ const Process = () => {
                   </div>
 
                   {!above && (
-                    <div className="mt-8 text-center px-2 min-h-[140px]">
+                    <div className="mt-8 w-full px-2 min-h-[160px] flex flex-col items-center text-center">
                       <p className="text-[10px] font-mono text-muted-foreground tracking-widest mb-2">
                         {s.n}
                       </p>
                       <h3 className="text-lg font-semibold text-foreground mb-2">
                         {s.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
+                      <p className="text-xs text-muted-foreground leading-relaxed max-w-[180px] mx-auto">
                         {s.desc}
                       </p>
                     </div>
