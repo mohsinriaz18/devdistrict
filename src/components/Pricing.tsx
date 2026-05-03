@@ -5,17 +5,17 @@ import { useStartProject } from "./StartProjectModal";
 const tiers = [
   {
     name: "Starter",
-    price: "$5k+",
-    desc: "MVPs and lean launches.",
-    features: ["Up to 5 core features", "Responsive web app", "Basic analytics", "2-week delivery", "Email support"],
+    price: "$1,999",
+    desc: "MVPs and lean launches in 4–6 weeks.",
+    features: ["Up to 5 core features", "Responsive web app", "Basic analytics", "4–6 week delivery", "Email support"],
     cta: "Start a Project",
     highlighted: false,
   },
   {
     name: "Growth",
-    price: "$25k+",
+    price: "$4,999",
     desc: "Scalable products with depth.",
-    features: ["Unlimited features", "Web + mobile builds", "AI integrations", "Custom design system", "Priority support", "Performance audits"],
+    features: ["Unlimited features", "Web and mobile builds", "AI integrations", "Custom design system", "Priority support", "Performance audits"],
     cta: "Start a Project",
     highlighted: true,
   },
@@ -61,10 +61,10 @@ const Pricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`p-8 md:p-10 flex flex-col ${
+              className={`p-8 md:p-10 flex flex-col min-h-[640px] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                 t.highlighted
                   ? "bg-foreground text-background"
-                  : "bg-background border border-border text-foreground"
+                  : "bg-background border border-border text-foreground hover:border-foreground"
               }`}
             >
               <div className="flex items-baseline justify-between mb-2">
