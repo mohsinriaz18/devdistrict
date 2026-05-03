@@ -98,14 +98,14 @@ const Pricing = () => {
 
               <button
                 onClick={open}
-                className={`inline-flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium transition-opacity hover:opacity-90 ${
+                className={`group inline-flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 ${
                   t.highlighted
                     ? "bg-background text-foreground"
                     : "bg-foreground text-background"
                 }`}
               >
                 {t.cta}
-                <ArrowRight size={16} />
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </button>
             </motion.div>
           ))}
