@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "100+", label: "Projects Delivered" },
-  { value: "40+", label: "Clients Worldwide" },
+  { value: "30+", label: "Projects Delivered" },
+  { value: "20+", label: "Clients Worldwide" },
   { value: "6+", label: "Years of Experience" },
-  { value: "4 wks", label: "Avg. Delivery Time" },
+  { value: "4–6 wks", label: "Avg. Delivery Time" },
 ];
 
 const Stats = () => {

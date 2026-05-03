@@ -15,6 +15,21 @@ const Hero = () => {
         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="max-w-5xl text-center"
       >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-6"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+          </span>
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-foreground/80 font-medium">
+            Only 2 slots left this month
+          </span>
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -51,16 +66,17 @@ const Hero = () => {
         >
           <button
             onClick={open}
-            className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity"
+            className="group inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
           >
             Start a Project
-            <ArrowRight size={16} />
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </button>
           <a
             href="#portfolio"
-            className="inline-flex items-center gap-2 border border-foreground text-foreground px-8 py-4 text-sm font-medium hover:bg-foreground hover:text-background transition-colors"
+            className="group inline-flex items-center gap-2 border border-foreground text-foreground px-8 py-4 text-sm font-medium transition-all duration-300 hover:bg-foreground hover:text-background hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
           >
             View Work
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </a>
         </motion.div>
       </motion.div>

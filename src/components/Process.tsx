@@ -34,18 +34,18 @@ const Process = () => {
 
         {/* Desktop: horizontal roadmap */}
         <div className="hidden lg:block relative">
-          {/* The road line */}
-          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-border" />
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.4, ease: "easeInOut" }}
-            style={{ transformOrigin: "left" }}
-            className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-foreground"
-          />
+          <div className="grid grid-cols-6 gap-4 relative" style={{ gridTemplateRows: "160px 56px 160px" }}>
+            {/* The road line in the middle row */}
+            <div className="absolute left-0 right-0 h-px bg-border" style={{ top: "calc(160px + 28px)" }} />
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.4, ease: "easeInOut" }}
+              style={{ transformOrigin: "left", top: "calc(160px + 28px)" }}
+              className="absolute left-0 right-0 h-px bg-foreground"
+            />
 
-          <div className="grid grid-cols-6 relative">
             {steps.map((s, i) => {
               const above = i % 2 === 0;
               const Icon = s.Icon;
@@ -56,40 +56,40 @@ const Process = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                  className="relative flex flex-col items-center"
+                  className="contents"
                 >
-                  {above && (
-                    <div className="mb-8 w-full px-2 min-h-[160px] flex flex-col justify-end items-center text-center">
-                      <p className="text-[10px] font-mono text-muted-foreground tracking-widest mb-2">
-                        {s.n}
-                      </p>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">
-                        {s.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed max-w-[180px] mx-auto">
-                        {s.desc}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Node on the road */}
-                  <div className="relative z-10 h-14 w-14 rounded-full bg-background border-2 border-foreground flex items-center justify-center">
-                    <Icon size={20} strokeWidth={1.75} className="text-foreground" />
+                  {/* Top row */}
+                  <div className={`flex flex-col items-center justify-end text-center px-2 ${above ? "" : "invisible"}`} style={{ gridRow: 1, gridColumn: i + 1 }}>
+                    <p className="text-[10px] font-mono text-muted-foreground tracking-widest mb-2">
+                      {s.n}
+                    </p>
+                    <h3 className="text-lg font-semibold text-foreground mb-2 leading-tight">
+                      {s.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed w-[160px] mx-auto">
+                      {s.desc}
+                    </p>
                   </div>
 
-                  {!above && (
-                    <div className="mt-8 w-full px-2 min-h-[160px] flex flex-col items-center text-center">
-                      <p className="text-[10px] font-mono text-muted-foreground tracking-widest mb-2">
-                        {s.n}
-                      </p>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">
-                        {s.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed max-w-[180px] mx-auto">
-                        {s.desc}
-                      </p>
+                  {/* Node row */}
+                  <div className="flex items-center justify-center" style={{ gridRow: 2, gridColumn: i + 1 }}>
+                    <div className="relative z-10 h-14 w-14 rounded-full bg-background border-2 border-foreground flex items-center justify-center">
+                      <Icon size={20} strokeWidth={1.75} className="text-foreground" />
                     </div>
-                  )}
+                  </div>
+
+                  {/* Bottom row */}
+                  <div className={`flex flex-col items-center justify-start text-center px-2 ${!above ? "" : "invisible"}`} style={{ gridRow: 3, gridColumn: i + 1 }}>
+                    <p className="text-[10px] font-mono text-muted-foreground tracking-widest mb-2">
+                      {s.n}
+                    </p>
+                    <h3 className="text-lg font-semibold text-foreground mb-2 leading-tight">
+                      {s.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed w-[160px] mx-auto">
+                      {s.desc}
+                    </p>
+                  </div>
                 </motion.div>
               );
             })}

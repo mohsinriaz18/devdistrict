@@ -2,22 +2,22 @@ import { motion } from "framer-motion";
 
 const studies = [
   {
-    title: "Fintech Dashboard Redesign",
-    problem: "Legacy interface causing 40% user drop-off during onboarding.",
-    solution: "Complete UX overhaul with streamlined flows and real-time data visualization.",
-    impact: "68% increase in user retention and 3x faster onboarding completion.",
+    title: "Drag-and-Drop Bot Builder for Founders",
+    problem: "Manual bot development required weeks of engineering for every new use case, blocking non-technical founders.",
+    solution: "Designed a self-controlled, visual agent generator with drag-and-drop logic, pre-built blocks, and live preview.",
+    impact: "10× faster bot deployment and zero engineering cost for founders shipping their first AI agents.",
   },
   {
-    title: "AI-Powered Health Platform",
-    problem: "Manual patient data processing taking 6+ hours per clinic per day.",
-    solution: "Built an AI pipeline for automated triage, scheduling, and record analysis.",
-    impact: "Reduced processing time to 45 minutes. Deployed across 120+ clinics.",
+    title: "All-in-One Travel Planning Platform",
+    problem: "Travelers juggled flights, stays, and activities across fragmented tools with no unified itinerary.",
+    solution: "Built a single travel service marketplace with smart itinerary creation, bookings, and collaborative trip planning.",
+    impact: "Cut average trip-planning time from hours to minutes with a 4.8★ user satisfaction rating.",
   },
   {
-    title: "E-Commerce Mobile App",
-    problem: "No mobile presence for a brand generating $2M/year in online sales.",
-    solution: "Cross-platform mobile app with personalized recommendations and one-tap checkout.",
-    impact: "35% revenue increase within 6 months of launch. 4.8★ App Store rating.",
+    title: "Global Freight Logistics App",
+    problem: "International freight ops were drowning in paperwork, manual tracking, and disconnected stakeholders.",
+    solution: "Shipped a unified web and mobile portal automating documentation, tracking, and customer handoff.",
+    impact: "Reduced manual ops by 70% and onboarded shippers across multiple countries within months of launch.",
   },
 ];
 

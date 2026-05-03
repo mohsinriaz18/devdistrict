@@ -1,48 +1,50 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Smartphone, Cpu, Rocket, Palette, Lightbulb, ChevronUp } from "lucide-react";
+import { Rocket, Layers, Palette, Cpu, Smartphone, LifeBuoy, ChevronUp } from "lucide-react";
+import { useStartProject } from "./StartProjectModal";
 
 const services = [
   {
-    icon: Globe,
-    title: "Web App Development",
-    desc: "Build fast, responsive, and visually stunning web applications with modern frameworks and clean architecture.",
-    tags: ["React", "Next.js", "TypeScript"],
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile App Development",
-    desc: "Native and cross-platform mobile apps that deliver seamless experiences on every device.",
-    tags: ["React Native", "Flutter", "iOS"],
-  },
-  {
-    icon: Cpu,
-    title: "AI Integration",
-    desc: "Embed intelligent AI capabilities into your existing products and workflows for smarter automation.",
-    tags: ["LLMs", "Computer Vision", "NLP"],
-  },
-  {
     icon: Rocket,
     title: "MVP Development",
-    desc: "Go from idea to launch fast with lean, production-ready minimum viable products.",
-    tags: ["Planning", "Roadmap", "Validation"],
+    desc: "Launch market-ready MVPs in 4–6 weeks using React, Node, and AI-assisted workflows powered by Claude and Cursor.",
+    tags: ["React", "Node.js", "Claude", "Cursor"],
+  },
+  {
+    icon: Layers,
+    title: "SaaS Development",
+    desc: "Scalable, multi-tenant SaaS platforms built on React, Node.js, Postgres, and modern cloud infrastructure.",
+    tags: ["SaaS", "Postgres", "Stripe", "Cloud"],
   },
   {
     icon: Palette,
     title: "UI/UX Design",
-    desc: "Bold, intuitive interfaces designed to convert and delight your users at every touchpoint.",
-    tags: ["Figma", "Prototyping", "Design Systems"],
+    desc: "Conversion-focused product design, design systems, and Figma prototypes built for web and mobile experiences.",
+    tags: ["Figma", "Design Systems", "Prototyping"],
   },
   {
-    icon: Lightbulb,
-    title: "Product Strategy",
-    desc: "Strategic planning to align your technology with business goals and market fit.",
-    tags: ["Research", "Analytics", "Growth"],
+    icon: Cpu,
+    title: "AI Integration",
+    desc: "Embed Claude, GPT, RAG pipelines, and AI agents into your product for smarter automation and faster workflows.",
+    tags: ["Claude", "OpenAI", "RAG", "Agents"],
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile App Development",
+    desc: "Hybrid and native iOS and Android apps built with React Native and Flutter for true cross-platform reach.",
+    tags: ["React Native", "Flutter", "iOS", "Android"],
+  },
+  {
+    icon: LifeBuoy,
+    title: "Project Rescue Services",
+    desc: "Audit, refactor, and revive stalled or broken codebases with senior engineers and battle-tested architecture.",
+    tags: ["Audit", "Refactor", "Rescue"],
   },
 ];
 
 const Services = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { open: openStartProject } = useStartProject();
 
   return (
     <section id="services" className="py-20 md:py-24 px-6 bg-secondary/30">
@@ -66,7 +68,7 @@ const Services = () => {
             Designed to Win.
           </h2>
           <p className="mt-6 text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl mx-auto">
-            We help startups and enterprises bring bold ideas to life through expert software, design, and strategy.
+            Powered by Claude, Cursor, React, and Node — we ship 2× faster at 50% lower cost than traditional agencies.
           </p>
         </motion.div>
 
@@ -164,17 +166,19 @@ const Services = () => {
             Ready to turn your idea into a shipped product?
           </h3>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity"
+            <button
+              onClick={openStartProject}
+              className="group inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
             >
               Get a Quote
-            </a>
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </button>
             <a
               href="#portfolio"
-              className="inline-flex items-center justify-center gap-2 border border-foreground text-foreground px-8 py-4 text-sm font-medium hover:bg-foreground hover:text-background transition-colors"
+              className="group inline-flex items-center justify-center gap-2 border border-foreground text-foreground px-8 py-4 text-sm font-medium transition-all duration-300 hover:bg-foreground hover:text-background hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
             >
               See Our Work
+              <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
         </motion.div>
