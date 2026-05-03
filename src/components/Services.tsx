@@ -1,43 +1,44 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Smartphone, Cpu, Rocket, Palette, Lightbulb, ChevronUp } from "lucide-react";
+import { Rocket, Layers, Palette, Cpu, Smartphone, LifeBuoy, ChevronUp } from "lucide-react";
+import { useStartProject } from "./StartProjectModal";
 
 const services = [
   {
-    icon: Globe,
-    title: "Web App Development",
-    desc: "Build fast, responsive, and visually stunning web applications with modern frameworks and clean architecture.",
-    tags: ["React", "Next.js", "TypeScript"],
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile App Development",
-    desc: "Native and cross-platform mobile apps that deliver seamless experiences on every device.",
-    tags: ["React Native", "Flutter", "iOS"],
-  },
-  {
-    icon: Cpu,
-    title: "AI Integration",
-    desc: "Embed intelligent AI capabilities into your existing products and workflows for smarter automation.",
-    tags: ["LLMs", "Computer Vision", "NLP"],
-  },
-  {
     icon: Rocket,
     title: "MVP Development",
-    desc: "Go from idea to launch fast with lean, production-ready minimum viable products.",
-    tags: ["Planning", "Roadmap", "Validation"],
+    desc: "Launch market-ready MVPs in 4–6 weeks using React, Node, and AI-assisted workflows powered by Claude and Cursor.",
+    tags: ["React", "Node.js", "Claude", "Cursor"],
+  },
+  {
+    icon: Layers,
+    title: "SaaS Development",
+    desc: "Scalable, multi-tenant SaaS platforms built on React, Node.js, Postgres, and modern cloud infrastructure.",
+    tags: ["SaaS", "Postgres", "Stripe", "Cloud"],
   },
   {
     icon: Palette,
     title: "UI/UX Design",
-    desc: "Bold, intuitive interfaces designed to convert and delight your users at every touchpoint.",
-    tags: ["Figma", "Prototyping", "Design Systems"],
+    desc: "Conversion-focused product design, design systems, and Figma prototypes built for web and mobile experiences.",
+    tags: ["Figma", "Design Systems", "Prototyping"],
   },
   {
-    icon: Lightbulb,
-    title: "Product Strategy",
-    desc: "Strategic planning to align your technology with business goals and market fit.",
-    tags: ["Research", "Analytics", "Growth"],
+    icon: Cpu,
+    title: "AI Integration",
+    desc: "Embed Claude, GPT, RAG pipelines, and AI agents into your product for smarter automation and faster workflows.",
+    tags: ["Claude", "OpenAI", "RAG", "Agents"],
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile App Development",
+    desc: "Hybrid and native iOS and Android apps built with React Native and Flutter for true cross-platform reach.",
+    tags: ["React Native", "Flutter", "iOS", "Android"],
+  },
+  {
+    icon: LifeBuoy,
+    title: "Project Rescue Services",
+    desc: "Audit, refactor, and revive stalled or broken codebases with senior engineers and battle-tested architecture.",
+    tags: ["Audit", "Refactor", "Rescue"],
   },
 ];
 
