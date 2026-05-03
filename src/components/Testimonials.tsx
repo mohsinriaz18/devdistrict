@@ -9,31 +9,38 @@ import t4 from "@/assets/testimonial-4.jpg";
 const testimonials = [
   {
     quote:
-      "Dev District transformed our vision into a product that exceeded every expectation. Their speed and quality are unmatched.",
-    name: "Sarah Chen",
-    role: "CEO, Aura Health",
+      "The team built our drag-and-drop bot generator from scratch and shipped it in record time. It changed how founders launch agents.",
+    name: "Aarav Mehta",
+    role: "Founder, BotAgent",
     image: t1,
   },
   {
     quote:
-      "Working with them felt like having a world-class engineering team in-house. They shipped our MVP in 6 weeks flat.",
-    name: "Marcus Williams",
-    role: "Founder, NovaPay",
+      "They turned a messy travel-planning idea into a polished product our users actually love. Smooth, fast, and beautifully designed.",
+    name: "Lucia Romero",
+    role: "Co-founder, Copilot",
     image: t2,
   },
   {
     quote:
-      "The attention to detail in both design and code is exceptional. Our users constantly praise the experience.",
-    name: "Elena Rodriguez",
-    role: "CPO, Streamline",
+      "Resumedia went from concept to a live, AI-powered resume platform in weeks. Dev District just gets product execution.",
+    name: "Daniel Park",
+    role: "CEO, Resumedia",
     image: t3,
   },
   {
     quote:
-      "They don't just build software — they think like product strategists. Dev District is our go-to partner for every project.",
-    name: "James Park",
-    role: "CTO, Kinetic Labs",
+      "Xecutor needed serious technical depth and they delivered a production-grade platform on time and on budget.",
+    name: "Priya Shah",
+    role: "CTO, Xecutor",
     image: t4,
+  },
+  {
+    quote:
+      "Our global freight portal handles real shipping ops daily. Their team understood logistics and built it like seasoned operators.",
+    name: "Kwame Boateng",
+    role: "Founder, ShipAfrika",
+    image: t1,
   },
 ];
 
@@ -98,7 +105,7 @@ const Testimonials = () => {
                       className="text-background/95 leading-relaxed font-light text-balance max-w-3xl"
                       style={{ fontSize: "clamp(1.25rem, 2.4vw, 1.875rem)" }}
                     >
-                      "{t.quote}"
+                      {t.quote}
                     </p>
                     <img
                       src={t.image}
