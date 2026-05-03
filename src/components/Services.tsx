@@ -44,6 +44,7 @@ const services = [
 
 const Services = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { open: openStartProject } = useStartProject();
 
   return (
     <section id="services" className="py-20 md:py-24 px-6 bg-secondary/30">
@@ -67,7 +68,7 @@ const Services = () => {
             Designed to Win.
           </h2>
           <p className="mt-6 text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl mx-auto">
-            We help startups and enterprises bring bold ideas to life through expert software, design, and strategy.
+            Powered by Claude, Cursor, React, and Node — we ship 2× faster at 50% lower cost than traditional agencies.
           </p>
         </motion.div>
 
@@ -165,17 +166,19 @@ const Services = () => {
             Ready to turn your idea into a shipped product?
           </h3>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity"
+            <button
+              onClick={openStartProject}
+              className="group inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
             >
               Get a Quote
-            </a>
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </button>
             <a
               href="#portfolio"
-              className="inline-flex items-center justify-center gap-2 border border-foreground text-foreground px-8 py-4 text-sm font-medium hover:bg-foreground hover:text-background transition-colors"
+              className="group inline-flex items-center justify-center gap-2 border border-foreground text-foreground px-8 py-4 text-sm font-medium transition-all duration-300 hover:bg-foreground hover:text-background hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
             >
               See Our Work
+              <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
         </motion.div>
