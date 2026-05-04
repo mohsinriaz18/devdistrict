@@ -63,9 +63,31 @@ const Services = () => {
             className="text-foreground font-bold tracking-tight text-balance"
             style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
           >
-            Built to Ship.
+            {"Built to Ship.".split(" ").map((w, i) => (
+              <motion.span
+                key={`a-${w}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="inline-block mr-3"
+              >
+                {w}
+              </motion.span>
+            ))}
             <br />
-            Designed to Win.
+            {"Designed to Win.".split(" ").map((w, i) => (
+              <motion.span
+                key={`b-${w}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
+                className="inline-block mr-3"
+              >
+                {w}
+              </motion.span>
+            ))}
           </h2>
           <p className="mt-6 text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl mx-auto">
             Powered by Claude, Cursor, React, and Node — we ship 2× faster at 50% lower cost than traditional agencies.
@@ -96,7 +118,7 @@ const Services = () => {
                     <Icon
                       size={22}
                       strokeWidth={1.5}
-                      className={`transition-colors ${isOpen ? "text-foreground" : "text-muted-foreground"}`}
+                      className={`transition-all ${isOpen ? "text-foreground animate-float" : "text-muted-foreground"}`}
                     />
                     <span
                       className={`text-lg md:text-2xl font-semibold transition-colors ${

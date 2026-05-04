@@ -4,6 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowRight } from "lucide-react";
 import { z } from "zod";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -31,7 +32,7 @@ export const StartProjectProvider = ({ children }: { children: ReactNode }) => {
 const StartProjectSheet = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) => {
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = {
@@ -48,12 +49,27 @@ const StartProjectSheet = ({ open, onOpenChange }: { open: boolean; onOpenChange
       return;
     }
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      toast({ title: "Request sent", description: "We'll get back to you within 24 hours." });
+    try {
+      const { data: res, error } = await supabase.functions.invoke("send-project-inquiry", {
+        body: result.data,
+      });
+      if (error) throw error;
+      toast({
+        title: "Request sent",
+        description: "Thanks! We'll get back to you within 24 hours.",
+      });
       form.reset();
       onOpenChange(false);
-    }, 600);
+    } catch (err) {
+      console.error(err);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or email us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

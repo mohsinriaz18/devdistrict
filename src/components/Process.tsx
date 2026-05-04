@@ -45,6 +45,13 @@ const Process = () => {
               style={{ transformOrigin: "left", top: "calc(160px + 28px)" }}
               className="absolute left-0 right-0 h-px bg-foreground"
             />
+            {/* Traveling pulse dot along the road */}
+            <div
+              aria-hidden
+              className="absolute h-2 w-2 rounded-full bg-foreground shadow-[0_0_12px_rgba(0,0,0,0.6)] animate-travel"
+              style={{ top: "calc(160px + 28px - 3px)" }}
+            />
+
 
             {steps.map((s, i) => {
               const above = i % 2 === 0;
@@ -73,8 +80,9 @@ const Process = () => {
 
                   {/* Node row */}
                   <div className="flex items-center justify-center" style={{ gridRow: 2, gridColumn: i + 1 }}>
-                    <div className="relative z-10 h-14 w-14 rounded-full bg-background border-2 border-foreground flex items-center justify-center">
-                      <Icon size={20} strokeWidth={1.75} className="text-foreground" />
+                    <div className="relative z-10 h-14 w-14 rounded-full bg-background border-2 border-foreground flex items-center justify-center group transition-transform duration-300 hover:scale-110">
+                      <span aria-hidden className="absolute inset-0 rounded-full border-2 border-foreground/40 animate-pulse-ring" style={{ animationDelay: `${i * 0.4}s` }} />
+                      <Icon size={20} strokeWidth={1.75} className="text-foreground transition-transform duration-500 group-hover:rotate-12" />
                     </div>
                   </div>
 
