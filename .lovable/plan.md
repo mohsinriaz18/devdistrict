@@ -1,66 +1,115 @@
-## Content, Copy & Design Updates
+## Overview
+Add motion and life across the homepage, fix the "4–6 wks" stat wrapping, replace testimonial copy with the real client quotes, and wire the Start a Project form to email submissions to **mohsinriaz.work@gmail.com** via a Lovable Cloud edge function (using the built-in Lovable Emails infrastructure).
 
-### 1. Hero (`Hero.tsx`)
-- Add a green blinking signal pill above the eyebrow text: small pulsing green dot + "Only 2 slots left this month" (uppercase, tracked).
-- Keep existing layout. Use `animate-pulse` for the dot.
+---
 
-### 2. Stats (`Stats.tsx`)
-- Update numbers: `30+ Projects Delivered`, `20+ Clients Worldwide`, `6+ Years of Experience`, `4–6 wks Avg. Delivery Time`.
+## 1. Make the UI feel alive (animations everywhere)
 
-### 3. Services (`Services.tsx`)
-- Replace 6 services with new SEO-rich list (each desc keyword-packed):
-  - **MVP Development** — "Launch market-ready MVPs in 4–6 weeks using React, Node, and AI-assisted workflows (Claude + Cursor)."
-  - **SaaS Development** — "Scalable multi-tenant SaaS platforms built on React, Node.js, Postgres, and modern cloud infra."
-  - **UI/UX Design** — "Conversion-focused product design, design systems, and Figma prototypes for web and mobile."
-  - **AI Integration** — "Embed Claude, GPT, RAG pipelines, and AI agents into your product for smarter automation."
-  - **Mobile App Development** — "Hybrid and native iOS/Android apps with React Native and Flutter for cross-platform reach."
-  - **Project Rescue Services** — "Audit, refactor, and revive stalled or broken codebases with senior engineers."
-- Update sub-copy under heading: add "Powered by Claude, Cursor, React, and Node — we ship 2× faster at 50% lower cost than traditional agencies."
-- "Get a Quote" button → trigger `useStartProject().open` instead of `#contact` anchor.
+Currently most sections only animate once on scroll-in and stay static. We'll layer in continuous, lightweight motion that keeps the B&W minimalist aesthetic intact.
 
-### 4. Process / Roadmap (`Process.tsx`)
-- Fix text alignment: convert above/below grid items to use a fixed two-row CSS grid (`grid-rows-[1fr_auto_1fr]`) so titles + descriptions sit on the same baseline across all 6 nodes.
-- Use absolute-positioned text blocks anchored top/bottom of the node with consistent height — eliminates "text on one line" misalignment.
-- Constrain text width to `w-[160px]`, `text-center`, `mx-auto`.
+### Hero (`Hero.tsx`)
+- Headline: split "We Build Digital / Products That Scale." into per-word reveals with a subtle floating loop on the last word ("Scale.") using `animate-[float_4s_ease-in-out_infinite]`.
+- "Only 2 slots left" pill: keep ping dot, add gentle horizontal shimmer across the pill border.
+- CTAs: add infinite arrow nudge (`animate-[nudge_2.2s_ease-in-out_infinite]`) on the primary "Start a Project" arrow.
+- Add a soft floating background element (large outlined circle) drifting slowly behind the hero text — pure CSS keyframe, B&W only.
 
-### 5. Case Studies (`CaseStudies.tsx`)
-- Replace 3 studies with generic-titled versions of BotAgent, Copilot, ShipAfrika (no project names in headings):
-  - **"Drag-and-Drop Bot Builder for Founders"** — manual bot dev took weeks → self-controlled visual agent generator → 10× faster bot deployment.
-  - **"All-in-One Travel Planning Platform"** — fragmented trip planning → unified service marketplace → seamless itinerary creation.
-  - **"Global Freight Logistics App"** — paperwork-heavy international shipping → web + mobile portal automating documentation → reduced manual ops 70%.
+### Stats / Numbers (`Stats.tsx`)
+- **Animate numbers counting up** from 0 → final value when the section enters the viewport (custom hook with `requestAnimationFrame`, ~1.5s ease-out).
+- Each stat card gets a subtle hover lift + underline-grow on the label.
+- **Fix wrapping:** change "4–6 wks" to render on one line. Apply `whitespace-nowrap` to the value `<p>` and shrink the upper clamp slightly for that one card so it always fits one line on mobile (`clamp(2.25rem, 6vw, 5rem)` for the wks stat).
 
-### 6. Pricing (`Pricing.tsx`)
-- Starter: `$1,999`, desc "MVPs and lean launches in 4–6 weeks."
-- Growth: `$4,999`, features include "Web and mobile builds" (no `+`).
-- Custom: unchanged.
-- Increase card height: add `min-h-[640px]` and more internal padding.
-- Hover effect: `hover:-translate-y-2 hover:shadow-2xl transition-all duration-300`, plus subtle border accent on non-highlighted cards.
+### Services (`Services.tsx`)
+- Section heading words ("Built to Ship. Designed to Win.") fade-in word-by-word with stagger.
+- Active accordion item: icon does a slow continuous pulse-scale loop while open.
+- Tag chips: stagger-fade in with a tiny rise when the panel opens (already partially there — strengthen).
 
-### 7. Buttons & CTAs — engaging hover effect
-- Add a shared utility hover style across primary/secondary buttons in Hero, Services CTA, Pricing, CtaBand, Header, Contact: `transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0` plus arrow icon `group-hover:translate-x-1` micro-animation.
+### Process / Roadmap (`Process.tsx`)
+- After the road line draws in, add a constantly traveling "pulse dot" that slides left→right along the line (infinite loop, 6s).
+- Each milestone node: gentle continuous pulse ring (B&W ripple) so the roadmap visibly "breathes."
+- Step icons: rotate-on-hover micro-interaction.
 
-### 8. Testimonials (`Testimonials.tsx`)
-- Keep existing slider design (single quote, big circular avatar).
-- Replace quotes/names with project-tied entries (BotAgent, Copilot, Resumedia, Xecutor, ShipAfrika) — author names and roles like "Founder, BotAgent", etc.
-- Remove the big quote dashes: drop the `"{quote}"` wrapping quotes.
+### Case Studies (`CaseStudies.tsx`)
+- Each row slides + fades in with a slight horizontal parallax as the user scrolls (using framer-motion `useScroll` + `useTransform`).
 
-### 9. Footer (`Footer.tsx`)
-- Social icons: keep only Instagram, LinkedIn, Mail.
-  - Instagram → `https://www.instagram.com/dev.district?igsh=cDY5ZHBpaGljN2Y0&utm_source=qr`
-  - LinkedIn → `https://www.linkedin.com/company/dev-district/`
-  - Mail → `mailto:business@devdistrict.io`
-- Update tagline: "Build. Ship. Scale." (replace "Modern software development for ambitious teams").
-- Add a Contact column with:
-  - Email: `business@devdistrict.io` (mailto link)
-  - Phone: `+1 (786) 429-9639` as `tel:+17864299639` (clickable to dial on mobile)
-  - Address: `7901 4th St N STE 300, St. Petersburg, Florida`
-- Update Quick Links email reference to `business@devdistrict.io`.
+### Testimonials (`Testimonials.tsx`)
+- Avatar gets a slow continuous rotation of an outlined ring around it.
+- Quote text fade-up on slide change (already present — extend with letter-by-letter reveal for the first sentence).
 
-### 10. Contact section copy (`Contact.tsx`)
-- Update displayed email references if any to `business@devdistrict.io`.
+### Portfolio / CtaBand
+- Marquee-style horizontal scroll for the portfolio thumbnails on hover (subtle).
+- CtaBand: animated diagonal stripe pattern slowly drifting in the background.
+
+### Global keyframes
+Add to `tailwind.config.ts` and `index.css`:
+- `float` (gentle vertical bob)
+- `nudge` (right-arrow nudge)
+- `shimmer` (border light sweep)
+- `travel` (left→right pulse along a line)
+- `pulse-ring` (expanding ring)
+
+All keyframes pure B&W, GPU-friendly (`transform` / `opacity` only), and respect `prefers-reduced-motion` via a global `@media (prefers-reduced-motion: reduce)` override that disables infinite loops.
+
+---
+
+## 2. Fix "4–6 wks" wrapping in Stats
+Apply `whitespace-nowrap` to the value and a slightly smaller `clamp()` so it never breaks across two lines on any breakpoint.
+
+---
+
+## 3. Real testimonial quotes (`Testimonials.tsx`)
+
+Replace existing quotes with the user-provided copy, keep BotAgent unchanged:
+
+1. **BotAgent** — *(unchanged)* "The team built our drag-and-drop bot generator from scratch and shipped it in record time. It changed how founders launch agents." — Founder, BotAgent
+2. **ShipAfrika** — "It was really great working with this team! They did an exceptional job and delivered exactly what I was looking for. They understood the task and professionally delivered within the prescribed timeframe. I would highly recommend them!!" — Founder, ShipAfrika
+3. **Copilot** — "Dev District team was extremely professional, responsive, and easy to work with. They understood exactly what I needed and delivered high-quality content that matched my brand perfectly. Highly recommend if you're looking for someone reliable and creative!" — Co-founder, Copilot
+4. **Xecutor** — "Loved working with Dev District team. They are very detail-oriented and friendly to work with. They not only worked on the scope I had in mind but also gave guidelines to improve the app. Highly recommended." — CTO, Xecutor
+5. **Resumedia** — "Best team I've ever worked with — very professional, very fast, and very dedicated. I've never met such kind people before. Thank you for the great work, I'm looking forward to the future with you!" — CEO, Resumedia
+
+Names stay as the existing fictional founder names tied to each brand. Keep current slider, dots, auto-advance, colorful avatars.
+
+---
+
+## 4. Wire Start a Project form to email mohsinriaz.work@gmail.com
+
+The form currently just shows a toast. We'll make it actually deliver every submission to your inbox.
+
+### Approach: Lovable Cloud + Lovable Emails (built-in, zero-config)
+1. **Enable Lovable Cloud** on the project (required for edge functions and email infra).
+2. **Set up an email sender domain** via the email setup dialog (one-click; needed before any email can send out).
+3. Create a new edge function `send-project-inquiry` that:
+   - Validates the payload server-side with Zod (mirrors the client schema).
+   - Sends a nicely formatted HTML email to `mohsinriaz.work@gmail.com` with all fields (Name, Email, Phone, Budget, Service, Description, plus timestamp).
+   - Sets `reply_to` to the submitter's email so you can reply directly from Gmail.
+   - Returns `{ ok: true }` on success.
+4. **Also persist** every submission to a new `project_inquiries` table in Lovable Cloud (so nothing is lost if email ever fails — you'll have a backup log).
+   - Columns: `id`, `name`, `email`, `phone`, `budget`, `looking_for`, `description`, `created_at`.
+   - RLS: only service role can read; public can insert via the edge function only.
+5. Update `StartProjectModal.tsx` `handleSubmit` to call the edge function via `supabase.functions.invoke('send-project-inquiry', { body: data })` instead of the current `setTimeout`. Show real success/error toasts based on response.
+
+> Because this requires enabling Lovable Cloud and provisioning an email sender domain, after you approve this plan I'll first prompt you to set up the email sender domain (one-click button in chat), then build everything above.
+
+---
 
 ## Technical Notes
-- Lucide icons: import `Instagram` (replace Twitter/Github usages in footer).
-- Reuse `useStartProject()` hook for all "Get a Quote" / "Start a Project" buttons.
-- Roadmap fix uses CSS grid with explicit row heights to guarantee node alignment regardless of title/description length.
-- All new hover effects rely on Tailwind transition utilities — no new dependencies.
+- Animations rely on Tailwind keyframes + framer-motion only — no new dependencies.
+- Number count-up: small custom `useCountUp` hook in `src/hooks/`.
+- `prefers-reduced-motion` honored globally via a CSS media query in `index.css`.
+- Edge function: standard Lovable Cloud pattern, JWT not required (public form), CORS enabled, Zod validation, rate limit by IP (in-memory; sufficient for a contact form).
+- Email goes through Lovable's queued email infrastructure (auto-retry, DLQ, rate-limit safe).
+- Form submissions also stored in `project_inquiries` as a backup audit log.
+
+## Files Affected
+- `src/components/Hero.tsx` — word reveals, floating bg, arrow nudge
+- `src/components/Stats.tsx` — count-up numbers, fix "4–6 wks" wrap
+- `src/components/Services.tsx` — heading word stagger, active-icon pulse
+- `src/components/Process.tsx` — traveling pulse dot, breathing nodes
+- `src/components/CaseStudies.tsx` — scroll parallax
+- `src/components/Testimonials.tsx` — new quotes, avatar ring, text reveal
+- `src/components/CtaBand.tsx` — drifting stripes
+- `src/components/Portfolio.tsx` — hover marquee
+- `src/components/StartProjectModal.tsx` — call edge function
+- `src/hooks/useCountUp.ts` — new
+- `tailwind.config.ts` + `src/index.css` — new keyframes + reduced-motion guard
+- `supabase/functions/send-project-inquiry/index.ts` — new edge function
+- New DB migration — `project_inquiries` table + RLS

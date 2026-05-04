@@ -7,19 +7,28 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-20 bg-background"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-20 bg-background overflow-hidden"
     >
+      {/* Drifting background circles — subtle B&W ambient motion */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
+        <div className="absolute top-1/4 -left-20 h-72 w-72 rounded-full border border-border/60 animate-float-slow" />
+        <div
+          className="absolute bottom-1/4 -right-24 h-96 w-96 rounded-full border border-border/40 animate-float-slow"
+          style={{ animationDelay: "-6s" }}
+        />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="max-w-5xl text-center"
+        className="relative z-10 max-w-5xl text-center"
       >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-6"
+          className="relative inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-6 overflow-hidden"
         >
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping" />
@@ -28,6 +37,11 @@ const Hero = () => {
           <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-foreground/80 font-medium">
             Only 2 slots left this month
           </span>
+          {/* shimmer sweep */}
+          <span
+            aria-hidden
+            className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-foreground/10 to-transparent animate-shimmer"
+          />
         </motion.div>
 
         <motion.p
@@ -43,9 +57,37 @@ const Hero = () => {
           className="text-foreground font-bold leading-[0.95] tracking-tight text-balance"
           style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
         >
-          We Build Digital
+          {["We", "Build", "Digital"].map((w, i) => (
+            <motion.span
+              key={w}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 + i * 0.08, duration: 0.6 }}
+              className="inline-block mr-3"
+            >
+              {w}
+            </motion.span>
+          ))}
           <br />
-          Products That Scale.
+          {["Products", "That"].map((w, i) => (
+            <motion.span
+              key={w}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 + i * 0.08, duration: 0.6 }}
+              className="inline-block mr-3"
+            >
+              {w}
+            </motion.span>
+          ))}
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.66, duration: 0.6 }}
+            className="inline-block animate-float"
+          >
+            Scale.
+          </motion.span>
         </h1>
 
         <motion.p
@@ -69,7 +111,7 @@ const Hero = () => {
             className="group inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
           >
             Start a Project
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1 animate-nudge" />
           </button>
           <a
             href="#portfolio"
