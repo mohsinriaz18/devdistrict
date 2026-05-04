@@ -16,30 +16,30 @@ const testimonials = [
   },
   {
     quote:
-      "They turned a messy travel-planning idea into a polished product our users actually love. Smooth, fast, and beautifully designed.",
-    name: "Lucia Romero",
-    role: "Co-founder, Copilot",
+      "It was really great working with this team! They did an exceptional job and delivered exactly what I was looking for. They understood the task and professionally delivered within the prescribed timeframe. I would highly recommend them!!",
+    name: "Kwame Boateng",
+    role: "Founder, ShipAfrika",
     image: t2,
   },
   {
     quote:
-      "Resumedia went from concept to a live, AI-powered resume platform in weeks. Dev District just gets product execution.",
-    name: "Daniel Park",
-    role: "CEO, Resumedia",
+      "Dev District team was extremely professional, responsive, and easy to work with. They understood exactly what I needed and delivered high-quality content that matched my brand perfectly. Highly recommend if you're looking for someone reliable and creative!",
+    name: "Lucia Romero",
+    role: "Co-founder, Copilot",
     image: t3,
   },
   {
     quote:
-      "Xecutor needed serious technical depth and they delivered a production-grade platform on time and on budget.",
+      "Loved working with Dev District team. They are very detail-oriented and friendly to work with. They not only worked on the scope I had in mind but also gave guidelines to improve the app. Highly recommended.",
     name: "Priya Shah",
     role: "CTO, Xecutor",
     image: t4,
   },
   {
     quote:
-      "Our global freight portal handles real shipping ops daily. Their team understood logistics and built it like seasoned operators.",
-    name: "Kwame Boateng",
-    role: "Founder, ShipAfrika",
+      "Best team I've ever worked with — very professional, very fast, and very dedicated. I've never met such kind people before. Thank you for the great work, I'm looking forward to the future with you!",
+    name: "Daniel Park",
+    role: "CEO, Resumedia",
     image: t1,
   },
 ];
@@ -60,10 +60,9 @@ const Testimonials = () => {
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
 
-  // Auto-advance
   useEffect(() => {
     if (!emblaApi) return;
-    const id = setInterval(() => emblaApi.scrollNext(), 6000);
+    const id = setInterval(() => emblaApi.scrollNext(), 6500);
     return () => clearInterval(id);
   }, [emblaApi]);
 
@@ -103,18 +102,25 @@ const Testimonials = () => {
                   >
                     <p
                       className="text-background/95 leading-relaxed font-light text-balance max-w-3xl"
-                      style={{ fontSize: "clamp(1.25rem, 2.4vw, 1.875rem)" }}
+                      style={{ fontSize: "clamp(1.125rem, 2.2vw, 1.75rem)" }}
                     >
                       {t.quote}
                     </p>
-                    <img
-                      src={t.image}
-                      alt={t.name}
-                      loading="lazy"
-                      width={128}
-                      height={128}
-                      className="mt-12 h-28 w-28 md:h-32 md:w-32 rounded-full object-cover border border-background/20"
-                    />
+                    <div className="mt-12 relative">
+                      {/* rotating outline ring */}
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 -m-2 rounded-full border border-dashed border-background/30 animate-spin-slow"
+                      />
+                      <img
+                        src={t.image}
+                        alt={t.name}
+                        loading="lazy"
+                        width={128}
+                        height={128}
+                        className="relative h-28 w-28 md:h-32 md:w-32 rounded-full object-cover border border-background/20"
+                      />
+                    </div>
                     <p className="mt-5 font-semibold text-base">{t.name}</p>
                     <p className="text-sm text-background/60 mt-1">{t.role}</p>
                   </motion.div>
