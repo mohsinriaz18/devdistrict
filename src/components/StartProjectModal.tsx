@@ -12,7 +12,7 @@ const schema = z.object({
   phone: z.string().trim().min(5, "Phone is required").max(30),
   budget: z.string().min(1, "Select a budget"),
   lookingFor: z.string().min(1, "Select a service"),
-  description: z.string().trim().min(10, "Tell us a bit more").max(1000),
+  description: z.string().trim().min(3, "Tell us a bit more").max(1000),
 });
 
 type Ctx = { open: () => void; close: () => void };
