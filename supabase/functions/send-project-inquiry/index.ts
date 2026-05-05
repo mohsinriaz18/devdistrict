@@ -14,7 +14,7 @@ const schema = z.object({
   phone: z.string().trim().min(5).max(30),
   budget: z.string().min(1).max(50),
   lookingFor: z.string().min(1).max(100),
-  description: z.string().trim().min(10).max(1000),
+  description: z.string().trim().min(3).max(1000),
 });
 
 const RECIPIENT = "mohsinriaz.work@gmail.com";
