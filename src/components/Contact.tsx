@@ -1,13 +1,50 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", company: "", details: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (loading) return;
+    setLoading(true);
+    try {
+      const description = form.company
+        ? `Company: ${form.company}\n\n${form.details}`
+        : form.details;
+
+      const { data, error } = await supabase.functions.invoke("send-project-inquiry", {
+        body: {
+          name: form.name,
+          email: form.email,
+          phone: "—",
+          budget: "n/a",
+          lookingFor: "Contact",
+          description,
+          source: "contact",
+        },
+      });
+
+      if (error) throw error;
+      if (data && data.ok === false) throw new Error("Submission failed");
+
+      setSubmitted(true);
+      toast.success("Message sent. We'll be in touch soon.");
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -58,9 +95,11 @@ const Contact = () => {
             ].map((field) => (
               <div key={field.name}>
                 <input
-                  required
+                  required={field.name !== "company"}
                   type={field.type}
                   name={field.name}
+                  value={(form as any)[field.name]}
+                  onChange={handleChange}
                   placeholder={field.label}
                   className="w-full bg-transparent border-b border-border py-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
                 />
@@ -71,6 +110,8 @@ const Contact = () => {
               <textarea
                 required
                 name="details"
+                value={form.details}
+                onChange={handleChange}
                 placeholder="Project Details"
                 rows={4}
                 className="w-full bg-transparent border-b border-border py-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors resize-none"
@@ -79,10 +120,20 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity mt-4"
+              disabled={loading}
+              className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity mt-4 disabled:opacity-60"
             >
-              Send Request
-              <ArrowRight size={16} />
+              {loading ? (
+                <>
+                  Sending
+                  <Loader2 size={16} className="animate-spin" />
+                </>
+              ) : (
+                <>
+                  Send Request
+                  <ArrowRight size={16} />
+                </>
+              )}
             </button>
           </motion.form>
         )}
